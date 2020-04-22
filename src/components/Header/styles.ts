@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface ContainerProps {
   size?: 'small' | 'large';
+  page: string;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -15,16 +16,34 @@ export const Container = styled.div<ContainerProps>`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     nav {
+      a:first-of-type {
+        ${(props) =>
+          props.page === 'dashboard' &&
+          css`
+            border: 2px solid #ff872c;
+            border-top: 0;
+            border-right: 0;
+            border-left: 0;
+          `}
+      }
       a {
         color: #fff;
         text-decoration: none;
         font-size: 16px;
         transition: opacity 0.2s;
+        padding-bottom: 7px;
 
         & + a {
           margin-left: 32px;
+          ${(props) =>
+            props.page === 'import' &&
+            css`
+              border: 2px solid #ff872c;
+              border-top: 0;
+              border-right: 0;
+              border-left: 0;
+            `}
         }
 
         &:hover {
